@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Usuarios</title>
+    <style>
+        body{
+            font-family:Arial;
+            background:#202124;
+            color:white;
+            width:500px;
+            margin:50px auto;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:5px 0;
+        }
+
+        button{
+            padding:10px;
+            width:100%;
+        }
+
+        #resultado{
+            margin-top:20px;
+            background:#333;
+            padding:15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Panel de Gestión de Usuarios</h2>
+
+<input id="usuario" placeholder="Usuario">
+
+<button onclick="crearUsuario()">
+Crear Usuario
+</button>
+
+<div id="resultado"></div>
+
+<script>
+
+async function crearUsuario(){
+
+    const usuario=document.getElementById("usuario").value;
+
+    const r=await fetch("/gestion_usuario",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            usuario
+        })
+    });
+
+    const data=await r.json();
+
+    document.getElementById("resultado").innerText=
+        JSON.stringify(data,null,2);
+
+}
+
+</script>
+
+</body>
+</html>
