@@ -1,0 +1,13 @@
+zone "ctf.local" {
+
+    type master;
+
+    file "/etc/bind/db.ctf.local";
+
+    allow-transfer {
+
+        any;
+
+    };
+
+};
