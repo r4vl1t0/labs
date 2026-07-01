@@ -1,0 +1,24 @@
+$TTL 86400
+
+@       IN SOA ns1.ctf.local. admin.ctf.local. (
+        2026070101
+        3600
+        1800
+        604800
+        86400
+)
+
+        IN NS ns1.ctf.local.
+
+ns1             IN A 172.20.0.2
+www             IN A 172.20.0.10
+mail            IN A 172.20.0.11
+vpn             IN A 172.20.0.12
+git             IN A 172.20.0.13
+grafana         IN A 172.20.0.14
+jenkins         IN A 172.20.0.15
+staging         IN A 172.20.0.16
+backup          IN A 172.20.0.17
+admin-qa        IN A 172.20.0.18
+
+flag            IN TXT "FLAG{AXFR_IS_DANGEROUS}"
