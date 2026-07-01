@@ -48,7 +48,7 @@ def gestion():
 
             usuarios.remove(usuario)
 
-            flag = 'GOOD_JOOB_DINI'
+            flag = 'GOOD_JOB'
 
             return jsonify({
                 "mensaje":"Usuario eliminado",
