@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+
+  sqli-lab:
+
+    build: .
+
+    container_name: sqli-lab
+
+    ports:
+      - "5000:5000"
+
+    restart: unless-stopped
