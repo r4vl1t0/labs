@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    build: ./db
+    container_name: sqli_lab_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: labdb
+      MYSQL_USER: labuser
+      MYSQL_PASSWORD: labpass
+    volumes:
+      - shared_files:/var/www/html/files
+    command: >
+      bash -c "mkdir -p /var/www/html/files &&
+               chmod 777 /var/www/html/files &&
+               chown mysql:mysql /var/www/html/files &&
+               exec docker-entrypoint.sh mysqld"
+    networks:
+      - lab
+
+  web:
+    build: ./web
+    container_name: sqli_lab_web
+    depends_on:
+      - db
+    ports:
+      - "8086:80"
+    volumes:
+      - shared_files:/var/www/html/files
+    networks:
+      - lab
+
+volumes:
+  shared_files:
+
+networks:
+  lab:
