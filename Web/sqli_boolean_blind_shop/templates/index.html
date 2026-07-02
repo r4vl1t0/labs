@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TechStore</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🛒 TechStore</h1>
+
+<form action="/products" method="GET">
+
+<input type="text" name="search" placeholder="Search products..." value="{{ query }}">
+
+<button>Search</button>
+
+</form>
+
+<hr>
+
+{% if products %}
+
+<h3>Results</h3>
+
+<ul>
+    {% for p in products %}
+        <li>{{ p[0] }} - ${{ p[1] }}</li>
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p>No products found.</p>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
