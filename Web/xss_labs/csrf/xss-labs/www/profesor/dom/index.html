@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenida — Modo Profesor (DOM XSS)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="banner profesor">MODO PROFESOR — XSS DOM-based (Lab 3/6)</div>
+<div class="container">
+  <p><a href="/">&larr; volver al índice</a></p>
+  <h1>👋 Página de bienvenida</h1>
+  <p class="hint">
+    Objetivo de la demo: mostrar que la vulnerabilidad puede existir
+    <strong>100% en el navegador</strong>, sin que el servidor procese
+    el dato inyectado (no hay ningún request al backend con el payload).
+  </p>
+
+  <p>Bienvenido, <span id="saludo"></span></p>
+
+  <div class="payload-box">
+    <h3>▶ Cómo funciona (código fuente)</h3>
+    <pre>const params = new URLSearchParams(location.search);
+const nombre = params.get('nombre') || 'invitado';
+// VULNERABLE: se usa innerHTML con datos no confiables
+document.getElementById('saludo').innerHTML = nombre;</pre>
+    <p>Payload de ejemplo:</p>
+    <code>?nombre=&lt;img src=x onerror=alert('DOM XSS')&gt;</code>
+    <p style="margin-top:10px;">
+      <a class="btn" href="?nombre=%3Cimg%20src%3Dx%20onerror%3Dalert('DOM%20XSS')%3E">
+        Ejecutar demo ahora
+      </a>
+    </p>
+  </div>
+
+  <div class="fix-box">
+    <h3>🔧 Corrección (mostrar al final de la demo)</h3>
+    <pre>document.getElementById('saludo').textContent = nombre;</pre>
+    <p>Usar <code>textContent</code> en vez de <code>innerHTML</code>, o
+    sanitizar con una librería como DOMPurify si se necesita HTML.</p>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const nombre = params.get('nombre') || 'invitado';
+  // VULNERABLE: sink innerHTML con dato controlado por el usuario (source: URL)
+  document.getElementById('saludo').innerHTML = nombre;
+</script>
+</body>
+</html>

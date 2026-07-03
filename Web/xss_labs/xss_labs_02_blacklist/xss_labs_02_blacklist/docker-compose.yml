@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  xss-labs:
+    image: php:8.2-apache
+    container_name: xss-labs
+    ports:
+      - "8080:80"
+    environment:
+      # Cambia estas credenciales antes de la clase.
+      # Protegen SOLO la página de índice (/), no los labs individuales.
+      - INDEX_USER=profesor
+      - INDEX_PASS=cambiame123
+    volumes:
+      - ./www:/var/www/html
+    # Permite que PHP escriba los archivos de "comentarios" de los labs
+    # de XSS almacenado (solo para fines educativos / entorno aislado).
+    command: >
+      bash -c "apache2-foreground"
+    restart: unless-stopped
