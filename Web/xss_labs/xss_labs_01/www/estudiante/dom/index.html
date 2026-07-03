@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mini portal — Reto Estudiante (DOM XSS)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="banner estudiante">RETO ESTUDIANTE — XSS DOM-based (Lab 6/6)</div>
+<div class="container">
+  <p><a href="/">&larr; volver al índice</a></p>
+  <h1>Mini portal de secciones</h1>
+
+  <div class="challenge-box">
+    <h3>Reto</h3>
+    <p>Este mini portal usa el <code>#fragmento</code> de la URL para
+    decidir qué mostrar (un "router" del lado del cliente). Consigue que
+    se ejecute JavaScript y aparezca un <code>alert('FLAG_DOM')</code>.</p>
+    <p><strong>Pista:</strong> abre las herramientas de desarrollador y
+    revisa qué hace la función <code>render()</code> con el contenido del
+    hash.</p>
+  </div>
+
+  <nav style="margin: 16px 0;">
+    <a class="btn" href="#inicio">Inicio</a>
+    <a class="btn" href="#contacto">Contacto</a>
+  </nav>
+
+  <div id="contenido" style="background:#0f172a;border-radius:8px;padding:16px;">
+    Cargando...
+  </div>
+</div>
+
+<script>
+  function render() {
+    // El contenido después de "#" se decodifica y se inserta con innerHTML
+    const hash = decodeURIComponent(location.hash.substring(1));
+    const contenedor = document.getElementById('contenido');
+    if (hash === '' || hash === 'inicio') {
+      contenedor.innerHTML = '<p>Bienvenido a la sección de inicio.</p>';
+    } else if (hash === 'contacto') {
+      contenedor.innerHTML = '<p>Escríbenos a contacto@ejemplo.test</p>';
+    } else {
+      // VULNERABLE: cualquier otro valor del hash se inserta tal cual
+      contenedor.innerHTML = hash;
+    }
+  }
+  window.addEventListener('hashchange', render);
+  render();
+</script>
+</body>
+</html>
