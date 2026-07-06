@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portal estudiantil</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Portal estudiantil</h1>
+      <p>Gestion de perfil, estado academico y reportes internos.</p>
+    </header>
+    <main>
+      <div class="tabs">
+        <a class="active" href="/lab1-student.html">Estudiante</a>
+        <a href="/">Inicio</a>
+      </div>
+      <div class="layout">
+        <section class="panel">
+          <h2>Acceso</h2>
+          <form id="login-form">
+            <label>Usuario
+              <input name="username" autocomplete="username" required>
+            </label>
+            <label>Clave
+              <input name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit">Ingresar</button>
+          </form>
+        </section>
+        <section class="panel">
+          <h2>Panel</h2>
+          <div class="toolbar">
+            <button id="profile-btn" type="button">Ver perfil</button>
+            <button id="report-btn" class="secondary" type="button">Abrir reporte</button>
+            <button id="clear-btn" class="secondary" type="button">Cerrar sesion local</button>
+          </div>
+          <div id="main-status" class="status">Sin actividad.</div>
+          <h3 style="margin-top:18px">Sesion</h3>
+          <div id="token-box" class="status token-box">Sin sesion.</div>
+        </section>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+    <script>bindJwtLab({ prefix: "lab1/student" });</script>
+  </body>
+</html>

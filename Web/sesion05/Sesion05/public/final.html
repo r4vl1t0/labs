@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SSE</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>SSE</h1>
+      <p>Panel interno de servicios y ejecucion operativa.</p>
+    </header>
+    <main>
+      <div class="layout">
+        <section class="panel">
+          <h2>Acceso</h2>
+          <form id="login-form">
+            <label>Usuario
+              <input name="username" autocomplete="username" required>
+            </label>
+            <label>Clave
+              <input name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit">Ingresar</button>
+          </form>
+          <h2 style="margin-top:24px">Forgot Password?</h2>
+          <form id="forgot-form">
+            <label>Usuario
+              <input name="username" required>
+            </label>
+            <button type="submit">Enviar codigo</button>
+          </form>
+          <form id="reset-form">
+            <label>Usuario
+              <input name="username" required>
+            </label>
+            <label>Codigo
+              <input name="otp" inputmode="numeric" maxlength="4" required>
+            </label>
+            <label>Nueva clave
+              <input name="newPassword" type="password" required>
+            </label>
+            <button type="submit">Actualizar clave</button>
+          </form>
+          <div id="reset-status" class="status">Sin solicitud.</div>
+        </section>
+        <section class="panel">
+          <h2>Panel</h2>
+          <div class="app-grid">
+            <div class="app-tile">
+              <h3>Mensajes</h3>
+              <p>Bandeja interna del usuario.</p>
+              <button id="messages-btn" type="button">Abrir</button>
+            </div>
+            <div class="app-tile">
+              <h3>Publicaciones</h3>
+              <p>Registros publicados en el panel.</p>
+              <button id="posts-btn" type="button">Abrir</button>
+            </div>
+            <div class="app-tile">
+              <h3>Comandos</h3>
+              <form id="command-form">
+                <label>Comando
+                  <input name="command" autocomplete="off" required>
+                </label>
+                <button type="submit">Ejecutar</button>
+              </form>
+            </div>
+          </div>
+          <div class="toolbar">
+            <button id="clear-btn" class="secondary" type="button">Cerrar sesion local</button>
+          </div>
+          <div id="main-status" class="status">Sin actividad.</div>
+          <h3 style="margin-top:18px">Sesion</h3>
+          <div id="token-box" class="status token-box">Sin sesion.</div>
+        </section>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+    <script>bindFinalLab();</script>
+  </body>
+</html>

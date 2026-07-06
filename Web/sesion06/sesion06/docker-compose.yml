@@ -1,0 +1,7 @@
+services:
+  idor-access-lab:
+    build: .
+    container_name: idor-access-lab
+    ports:
+      - "8090:8000"
+    restart: unless-stopped
