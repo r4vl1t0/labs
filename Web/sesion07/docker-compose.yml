@@ -1,0 +1,22 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "5001:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - flask
+      - php
+      - pebble
+
+  flask:
+    build: ./flask-app
+    environment:
+      - FLASK_ENV=production
+
+  php:
+    build: ./php-app
+
+  pebble:
+    build: ./pebble-app
