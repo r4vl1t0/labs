@@ -1,0 +1,7 @@
+services:
+  ssrf-api-labs:
+    build: .
+    container_name: ssrf-api-labs
+    ports:
+      - "8050:8080"
+    restart: unless-stopped
