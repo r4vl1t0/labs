@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Pago</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div>
+      <a href="{{ url_for('shop') }}">Tienda</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Pago seguro</h1>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <div class="total-box">Total a pagar: <strong>${{ '%.2f' % total }}</strong></div>
+    <form method="post" action="{{ url_for('checkout') }}">
+      <label>Nombre en la tarjeta</label>
+      <input type="text" name="card_name" placeholder="Nombre completo">
+      <label>Numero de tarjeta</label>
+      <input type="text" name="card_number" placeholder="0000 0000 0000 0000">
+      <label>Vencimiento</label>
+      <input type="text" name="card_exp" placeholder="MM/AA">
+      <label>CVV</label>
+      <input type="text" name="card_cvv" placeholder="123">
+      <button type="submit">Pagar ahora</button>
+    </form>
+  </div>
+</body>
+</html>

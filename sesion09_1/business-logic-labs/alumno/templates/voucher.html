@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Comprobante</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div>
+      <a href="{{ url_for('shop') }}">Tienda</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Comprobante de compra</h1>
+    {% if not purchase %}
+      <p>Comprobante no encontrado.</p>
+    {% else %}
+      <table>
+        <tr><th>ID comprobante</th><td>{{ purchase['id'] }}</td></tr>
+        <tr><th>Comprador</th><td>{{ buyer['username'] if buyer else 'desconocido' }}</td></tr>
+        <tr><th>Producto</th><td>{{ purchase['product_name'] }}</td></tr>
+        <tr><th>Monto pagado</th><td>${{ '%.2f' % purchase['amount_paid'] }}</td></tr>
+        <tr><th>Tarjeta</th><td>**** **** **** {{ purchase['card_last4'] }}</td></tr>
+        <tr><th>Fecha</th><td>{{ purchase['created_at'] }}</td></tr>
+      </table>
+
+      {% if buyer %}
+      <h2>Comentario del comprador</h2>
+      <div>{{ buyer['photo_caption']|safe }}</div>
+      {% endif %}
+
+      {% if show_internal %}
+      <div class="note-box">
+        <span class="badge-admin">SOLO ADMIN</span>
+        <p><strong>Notas internas:</strong> {{ purchase['internal_note'] }}</p>
+      </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>

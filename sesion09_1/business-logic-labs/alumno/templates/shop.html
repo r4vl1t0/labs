@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Tienda</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div>
+      <a href="{{ url_for('profile') }}">Mi perfil</a>
+      <a href="{{ url_for('shop') }}">Tienda</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Tienda</h1>
+    <p>Hola, <strong>{{ user['display_name'] }}</strong>. Tu saldo disponible es
+      <strong>${{ '%.2f' % user['wallet'] }}</strong>.
+    </p>
+
+    <div class="product-card">
+      <h2>Suscripcion Premium</h2>
+      <p>Acceso a contenido exclusivo de la plataforma.</p>
+      <div class="price">${{ '%.2f' % product_price }}</div>
+    </div>
+
+    <form method="post" action="{{ url_for('apply_coupon') }}">
+      <label>Codigo de cupon</label>
+      <input type="text" name="code" placeholder="Ingresa tu cupon">
+      <button type="submit">Aplicar cupon</button>
+    </form>
+
+    <div class="total-box">
+      Total a pagar: <strong>${{ '%.2f' % cart_total }}</strong>
+    </div>
+
+    <a class="btn" href="{{ url_for('checkout') }}">Ir a pagar</a>
+  </div>
+</body>
+</html>

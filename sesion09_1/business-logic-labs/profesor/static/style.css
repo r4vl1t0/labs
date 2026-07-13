@@ -1,0 +1,107 @@
+* { box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f2f4f7;
+  margin: 0;
+  color: #1a1a1a;
+}
+.navbar {
+  background: #10233f;
+  color: #fff;
+  padding: 14px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 18px;
+  font-size: 14px;
+}
+.container {
+  max-width: 640px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+h1, h2 { margin-top: 0; }
+label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 14px; }
+input[type=text], input[type=password], input[type=email] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+button, .btn {
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 14px;
+  display: inline-block;
+  text-decoration: none;
+}
+button:hover, .btn:hover { background: #1558b0; }
+.error {
+  background: #fdecea;
+  color: #a3271a;
+  padding: 10px 14px;
+  border-radius: 5px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+.leak-box {
+  background: #1c1c1c;
+  color: #00ff7f;
+  font-family: 'Consolas', monospace;
+  padding: 18px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+}
+.leak-box .title {
+  color: #ff5555;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+.product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.price { font-size: 22px; font-weight: 700; color: #10233f; }
+.total-box {
+  background: #f7f9fc;
+  border: 1px solid #dbe2ea;
+  padding: 14px;
+  border-radius: 6px;
+  margin: 16px 0;
+  font-size: 16px;
+}
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+td, th { padding: 8px; border-bottom: 1px solid #e0e0e0; text-align: left; font-size: 13px; }
+.badge-admin {
+  background: #a3271a;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.note-box {
+  background: #fff8e1;
+  border: 1px solid #ffca28;
+  padding: 14px;
+  border-radius: 6px;
+  margin-top: 16px;
+}

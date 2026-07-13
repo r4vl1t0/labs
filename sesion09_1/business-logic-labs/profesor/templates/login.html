@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Iniciar sesion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div></div>
+  </div>
+  <div class="container">
+    <div class="leak-box">
+      <span class="title">AVISO DE SEGURIDAD - EQUIPO RED TEAM</span>
+      Nuestro equipo de Red Team ha identificado las siguientes credenciales
+      {{ leaked_username }}:{{ leaked_password }}
+    </div>
+
+    <h1>Iniciar sesion</h1>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="post" action="{{ url_for('login') }}">
+      <label>Usuario</label>
+      <input type="text" name="username" autocomplete="off">
+      <label>Contrasena</label>
+      <input type="password" name="password" autocomplete="off">
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+</body>
+</html>

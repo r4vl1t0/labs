@@ -1,0 +1,1 @@
+Plantilla de factura utilizada por el area de administracion.

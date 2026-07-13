@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Mi perfil</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div>
+      <a href="{{ url_for('shop') }}">Tienda</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Mi perfil</h1>
+    <p><strong>Usuario:</strong> {{ user['username'] }}</p>
+    <p><strong>Nombre para mostrar:</strong> {{ user['display_name'] }}</p>
+
+    <h2>Vista previa de tu descripcion de foto de perfil</h2>
+    <div>{{ user['photo_caption']|safe }}</div>
+
+    <form method="post" action="{{ url_for('profile') }}">
+      <label>Descripcion de tu foto de perfil</label>
+      <input type="text" name="photo_caption" value="{{ user['photo_caption'] }}">
+      <button type="submit">Guardar</button>
+    </form>
+
+    <p style="margin-top:20px;">
+      Perfil publico: <a href="{{ url_for('public_profile', username=user['username']) }}">/profile/{{ user['username'] }}</a>
+    </p>
+  </div>
+</body>
+</html>

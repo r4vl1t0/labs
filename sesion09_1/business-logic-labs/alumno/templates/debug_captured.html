@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Debug</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Registro de eventos capturados</h1>
+    <table>
+      <tr><th>ID</th><th>Valor</th><th>Origen</th><th>Fecha</th></tr>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r['id'] }}</td>
+        <td style="word-break:break-all;">{{ r['cookie_value'] }}</td>
+        <td>{{ r['source_ip'] }}</td>
+        <td>{{ r['created_at'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

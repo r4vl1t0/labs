@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  lab-profesor:
+    build: ./profesor
+    container_name: lab-profesor
+    ports:
+      - "8090:5000"
+    restart: unless-stopped
+
+  lab-alumno:
+    build: ./alumno
+    container_name: lab-alumno
+    ports:
+      - "8091:5000"
+    restart: unless-stopped

@@ -1,0 +1,101 @@
+version: "3.8"
+
+networks:
+  labnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.38.0.0/24
+
+services:
+
+  dns:
+    build: ./dns
+    container_name: lab-dns
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      - labnet
+    ports:
+      - "53530:53/udp"
+      - "53530:53/tcp"
+
+  nginx:
+    build: ./nginx
+    container_name: lab-nginx
+    networks:
+       -  labnet
+    ports:
+      - "8050:80"
+    depends_on:
+      - sqli-app
+      - idor-app
+      - weakcreds-app
+      - catalogo-app
+      - xss-app
+      - cmdinj-app
+      - xxe-app
+
+  mysql:
+    image: mysql:8.0
+    container_name: lab-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - labnet
+
+  sqli-app:
+    build: ./apps/sqli
+    container_name: lab-sqli
+    depends_on:
+      - mysql
+    networks:
+      - labnet
+
+  idor-app:
+    build: ./apps/idor
+    container_name: lab-idor
+    depends_on:
+      - mysql
+    networks:
+      - labnet
+
+  weakcreds-app:
+    build: ./apps/weakcreds
+    container_name: lab-weakcreds
+    networks:
+      - labnet
+
+  catalogo-app:
+    build: ./apps/catalogo
+    container_name: lab-catalogo
+    networks:
+      - labnet
+
+  xss-app:
+    build: ./apps/xss
+    container_name: lab-xss
+    networks:
+      - labnet
+
+  cmdinj-app:
+    build: ./apps/cmdinj
+    container_name: lab-cmdinj
+    networks:
+      - labnet
+
+  xxe-app:
+    build: ./apps/xxe
+    container_name: lab-xxe
+    networks:
+      - labnet
+
+  admin-bot:
+    build: ./bot
+    container_name: lab-admin-bot
+    depends_on:
+      - xss-app
+    networks:
+      - labnet

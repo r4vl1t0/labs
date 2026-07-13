@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_name }} - Perfil publico</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <strong>{{ app_name }}</strong>
+    <div>
+      <a href="{{ url_for('shop') }}">Tienda</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </div>
+  </div>
+  <div class="container">
+    {% if not user %}
+      <p>Usuario no encontrado.</p>
+    {% else %}
+      <h1>{{ user['display_name'] }}</h1>
+      <p>@{{ user['username'] }}</p>
+      <div>{{ user['photo_caption']|safe }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>

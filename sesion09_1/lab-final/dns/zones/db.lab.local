@@ -1,0 +1,24 @@
+$TTL    3600
+@       IN      SOA     ns1.lab.local. soporte-ti.lab.local. (
+                        2024061201      ; serial
+                        3600            ; refresh
+                        900             ; retry
+                        604800          ; expire
+                        3600 )          ; minimum
+
+@               IN      NS      ns1.lab.local.
+
+ns1             IN      A       172.28.0.5
+www             IN      A       172.28.0.10
+mail            IN      A       172.28.0.50
+vpn             IN      A       172.28.0.51
+autodiscover    IN      A       172.28.0.52
+portal-clientes IN      A       172.28.0.10
+intranet        IN      A       172.28.0.10
+gestion         IN      A       172.28.0.10
+catalogo        IN      A       172.28.0.10
+soporte         IN      A       172.28.0.10
+backup-docs     IN      A       172.28.0.10
+reportes-xml    IN      A       172.28.0.10
+staging         IN      A       172.28.0.53
+dev             IN      A       172.28.0.54
